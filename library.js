@@ -11,10 +11,10 @@ function Book(title, author, pages, readstatus) {
 }
 
 Book.prototype.toggleStatus = function () {
-  if (this.bookreadstatus === "read") {
-    this.bookreadstatus = "not read";
+  if (this.bookreadstatus === "Read") {
+    this.bookreadstatus = "Not read";
   } else {
-    this.bookreadstatus = "read";
+    this.bookreadstatus = "Read";
   }
 };
 {
