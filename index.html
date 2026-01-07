@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="library.css">
+</head>
+<body>
+    <script src="library.js" defer></script>
+    <div id="book-container"></div>
+    <button id="opendialog">Add Book</button>
+    <dialog id="bookdialog">
+        <form method="dialog">
+            <h3>ADD BOOK</h3>
+            <label>
+                Title : <input type="text" name="title" required>
+            </label>
+            <label>
+                Author : <input type="text" name="author" required>
+            </label>
+            <label>
+                Pages : <input type="number" name="pages" required>
+            </label>
+            <label>Read?
+                <select name="read">
+                    <option value="Read">Read</option>
+                    <option value="Notread">Not read</option>
+                </select>
+            </label>
+            <menu>
+            <button type="button" class="cancel">Cancel</button>
+            <button value="submit">Add</button>
+            </menu>
+        </form>
+    </dialog>
+       
+</body>
+</html>
