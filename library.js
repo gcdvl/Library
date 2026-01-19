@@ -1,38 +1,42 @@
 
 
-const myLibrary = [];
 
-function Book(title, author, pages, readstatus) {
+
+class Book {
+  constructor(title,author,pages,readstatus){
   this.bookid = Date.now();
   this.booktitle = title;
   this.bookauthor = author;
   this.bookpages = pages;
-  this.bookreadstatus = readstatus;
-}
+  this.bookreadstatus = readstatus;}
 
-Book.prototype.toggleStatus = function () {
-  if (this.bookreadstatus === "Read") {
+  toggleStatus(){
+    if (this.bookreadstatus === "Read") {
     this.bookreadstatus = "Not read";
   } else {
     this.bookreadstatus = "Read";
   }
-};
+  }
+}
+
+class Library
 {
+
+  #myLibrary = [];
+
+    addBooks(title,author,pages,readstatus)
+{
+    const book = new Book(title,author,pages,readstatus);
+    this.#myLibrary.push(book);
     
 }
 
-function addBooks(title,author,pages,readstatus)
-{
-    const book = new Book(title,author,pages,readstatus);
-    myLibrary.push(book);
-    
-};
 
-function displaybooks()
+     displaybooks()
 {
     const container = document.querySelector("#book-container");
     container.innerHTML="";
-    for(const book of myLibrary){
+    for(const book of this.#myLibrary){
         
         
        const card = document.createElement("div");
@@ -53,23 +57,29 @@ function displaybooks()
    statusbtn.addEventListener("click",()=>
 {
     const statusid = card.dataset.id;
-    const index= myLibrary.findIndex(book=>book.bookid==statusid);
-    const tochangestatus = myLibrary[index];
+    const index= this.#myLibrary.findIndex(book=>book.bookid==statusid);
+    const tochangestatus = this.#myLibrary[index];
     tochangestatus.toggleStatus();
-    displaybooks();
+    this.displaybooks();
 
 })    
 
 removebtn.addEventListener("click",()=>{
     const id = card.dataset.id;
-    const index= myLibrary.findIndex(book=>book.bookid==id);
-    myLibrary.splice(index,1);
-    displaybooks();
+    const index= this.#myLibrary.findIndex(book=>book.bookid==id);
+    this.#myLibrary.splice(index,1);
+    this.displaybooks();
 });
        container.appendChild(card);
 
     };
-};
+}
+
+}
+
+
+const lib = new Library();
+
 
 const dialog = document.querySelector("#bookdialog");
 const openBtn = document.querySelector("#opendialog");
@@ -89,8 +99,8 @@ form.addEventListener("submit",(e)=>{
     const pages = data.get("pages");
     const readstatus = data.get("read");
 
-    addBooks(title,author,pages,readstatus);
-    displaybooks();
+    lib.addBooks(title,author,pages,readstatus);
+    lib.displaybooks();
     dialog.close();
     form.reset();
 });
