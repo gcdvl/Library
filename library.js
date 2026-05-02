@@ -90,6 +90,16 @@ openBtn.addEventListener("click", () => {
   dialog.showModal();
 });
 
+const writer = document.getElementById("athr");
+writer.addEventListener("input",()=>
+{
+  if(writer.validity.valueMissing){
+    writer.setCustomValidity("Fill the author's name");
+  }
+  else{writer.setCustomValidity("");}
+  writer.reportValidity();
+});
+
 form.addEventListener("submit",(e)=>{
     e.preventDefault();
 
@@ -110,3 +120,4 @@ const cancelBtn = dialog.querySelector(".cancel");
 cancelBtn.addEventListener("click", () => {
   dialog.close();
 });
+
